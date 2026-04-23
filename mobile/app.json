@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "Cinema Booking",
+    "slug": "cinema-booking",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0F172A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.cinemabooking.app" },
+    "android": { "package": "com.cinemabooking.app" },
+    "web": { "bundler": "metro" }
+  }
+}
