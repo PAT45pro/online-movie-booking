@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CachedImage from './CachedImage';
 
 export default function MovieCard({ movie }) {
   const handleTrailer = (e) => {
@@ -13,10 +14,11 @@ export default function MovieCard({ movie }) {
     <div className="movie-card">
       <Link to={`/movies/${movie.movie_id}`} style={{ display: 'block', color: 'inherit' }}>
         <div className="movie-poster-wrap">
-          <img
-            src={movie.poster_url || 'https://via.placeholder.com/300x450?text=No+Poster'}
+          <CachedImage
+            src={movie.poster_url}
             alt={movie.title}
-            loading="lazy"
+            width={400}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
           <span className="movie-age-badge">{movie.age_rating || 'P'}</span>
           <div className="movie-hover-overlay">

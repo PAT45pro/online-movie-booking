@@ -40,6 +40,13 @@ export default function Navbar() {
               Vé của tôi
             </NavLink>
           )}
+          {user?.role === 'admin' && (
+            <NavLink to="/admin/rooms"
+              className={({ isActive }) => 'navbar-link' + (isActive ? ' active' : '')}
+              style={{ color: 'var(--warning)' }}>
+              🛠 Quản trị
+            </NavLink>
+          )}
         </div>
 
         <div className="navbar-right">

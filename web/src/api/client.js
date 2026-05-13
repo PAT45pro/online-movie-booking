@@ -40,13 +40,36 @@ export const movieApi = {
 export const showtimeApi = {
   detail: (id) => api.get(`/showtimes/${id}`).then(r => r.data),
   seats: (id) => api.get(`/showtimes/${id}/seats`).then(r => r.data),
+  // admin hủy suất (auto refund)
+  cancelShowtime: (id, reason) =>
+    api.patch(`/showtimes/${id}/cancel`, { reason }).then(r => r.data),
+};
+
+// Hold ghế tạm 8 phút
+export const holdApi = {
+  create: (showtimeId, seat_ids) =>
+    api.post(`/showtimes/${showtimeId}/holds`, { seat_ids }).then(r => r.data),
+  myHolds: (showtimeId) =>
+    api.get(`/showtimes/${showtimeId}/holds`).then(r => r.data),
+  release: (showtimeId, sessionId) =>
+    api.delete(`/showtimes/${showtimeId}/holds/${sessionId}`).then(r => r.data),
+};
+
+// Room layout (admin + public)
+export const roomApi = {
+  getLayout: (id) => api.get(`/rooms/${id}/layout`).then(r => r.data),
+  saveLayout: (id, layout) =>
+    api.post(`/admin/rooms/${id}/layout`, layout).then(r => r.data),
+  listForAdmin: () => api.get('/admin/rooms').then(r => r.data),
 };
 
 export const bookingApi = {
-  create: (data) => api.post('/bookings', data).then(r => r.data),
+  create: (data) => api.post('/bookings', data).then(r => r.data),       // legacy
+  // convert hold → booking khi user vào trang thanh toán
+  createFromHold: (data) => api.post('/bookings/from-hold', data).then(r => r.data),
   mine: () => api.get('/bookings/mine').then(r => r.data),
   detail: (id) => api.get(`/bookings/${id}`).then(r => r.data),
-  cancel: (id) => api.patch(`/bookings/${id}/cancel`).then(r => r.data),
+  // Không có cancel - hệ thống không hỗ trợ khách tự hủy vé
 };
 
 export const paymentApi = {

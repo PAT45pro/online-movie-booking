@@ -4,6 +4,7 @@ import HeroBanner from '../components/HeroBanner';
 import QuickBooking from '../components/QuickBooking';
 import MovieCard from '../components/MovieCard';
 import PromotionCard from '../components/PromotionCard';
+import CachedImage from '../components/CachedImage';
 import Loading from '../components/Loading';
 import { movieApi, contentApi, cinemaApi } from '../api/client';
 
@@ -103,9 +104,10 @@ export default function HomePage() {
                   to={`/cinemas/${c.cinema_id}`}
                   className="cinema-thumb"
                 >
-                  <img
+                  <CachedImage
                     src={c.image_url || 'https://via.placeholder.com/400x300?text=Cinema'}
                     alt={c.name}
+                    style={{ width: '100%', height: '100%' }}
                   />
                   <div className="cinema-thumb-overlay">
                     <div className="cinema-thumb-name">{c.name}</div>
@@ -145,7 +147,7 @@ export default function HomePage() {
 
             <div className="news-grid">
               <Link to={`/news/${news[0].news_id}`} className="news-featured">
-                <img src={news[0].thumbnail} alt={news[0].title} />
+                <CachedImage src={news[0].thumbnail} alt={news[0].title} priority="high" style={{ width: '100%', height: '100%' }} />
                 <div className="news-featured-body">
                   <div className="text-muted text-xs mb-sm">
                     {new Date(news[0].published_at).toLocaleDateString('vi-VN')} • {news[0].author}
@@ -158,7 +160,7 @@ export default function HomePage() {
               <div className="news-list">
                 {news.slice(1, 4).map(n => (
                   <Link key={n.news_id} to={`/news/${n.news_id}`} className="news-item">
-                    <img src={n.thumbnail} alt={n.title} />
+                    <CachedImage src={n.thumbnail} alt={n.title} style={{ width: 100, height: 80 }} />
                     <div>
                       <div className="news-item-title">{n.title}</div>
                       <div className="text-muted text-xs">

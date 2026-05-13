@@ -20,6 +20,8 @@ import PaymentPage from './pages/PaymentPage';
 import BookingConfirmPage from './pages/BookingConfirmPage';
 import MyBookingsPage from './pages/MyBookingsPage';
 import ProfilePage from './pages/ProfilePage';
+import AdminRoomsPage from './pages/AdminRoomsPage';
+import AdminLayoutEditor from './pages/AdminLayoutEditor';
 
 // Layout wrapper để ẩn Navbar/Footer trên các trang auth
 function AppLayout({ children }) {
@@ -73,6 +75,9 @@ export default function App() {
             <Route path="/booking/:id" element={<ProtectedRoute><BookingConfirmPage /></ProtectedRoute>} />
             <Route path="/my-bookings" element={<ProtectedRoute><MyBookingsPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+            {/* Admin layout editor */}
+            <Route path="/admin/rooms" element={<ProtectedRoute requireRole="admin"><AdminRoomsPage /></ProtectedRoute>} />
+            <Route path="/admin/rooms/:roomId/layout" element={<ProtectedRoute requireRole="admin"><AdminLayoutEditor /></ProtectedRoute>} />
 
             {/* 404 */}
             <Route path="*" element={<Navigate to="/" replace />} />
