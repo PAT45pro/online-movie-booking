@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Cinema Booking",
+    "slug": "cinema-booking",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0F172A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cinemabooking.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Ứng dụng cần truy cập vị trí để gợi ý các rạp chiếu phim gần nhất.",
+        "NSCameraUsageDescription": "Ứng dụng cần camera để quét mã QR vé tại rạp."
+      }
+    },
+    "android": {
+      "package": "com.cinemabooking.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
+    },
+    "web": { "bundler": "metro" },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Ứng dụng cần vị trí để gợi ý rạp gần bạn."
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": false,
+          "faceIDPermission": "Cho phép sử dụng Face ID để mở khóa app."
+        }
+      ]
+    ]
+  }
+}
